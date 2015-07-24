@@ -41,6 +41,18 @@ if(isset($_GET["COLOR"]))
 	$color=$_GET["COLOR"];
 }
 
+$bgcolor='';
+if(isset($_GET["BGCOLOR"]))
+{
+	$bgcolor=$_GET["BGCOLOR"];
+}
+
+$opacity='';
+if(isset($_GET["OPACITY"]))
+{
+	$opacity=$_GET["OPACITY"];
+}
+
 $text= (round($value/doubleval($json[$price]),$precision))." BTC  ".substr($timestamp,0,strlen($timestamp)-6);
 
 header('Content-Type: image/png');
@@ -51,7 +63,7 @@ if(isset($_GET["SIZE"]))
 	$size=$_GET["SIZE"];
 }
 
-// Here can be problem on some servers. Other solution is arial.ttf and delete putenv('GDFONTPATH=' . realpath('.'));
+// Here can be problem on some servers. Other solution is font + .ttf and delete putenv('GDFONTPATH=' . realpath('.'));
 putenv('GDFONTPATH=' . realpath('.'));
 $font = 'arial';
 if(isset($_GET["FONT"]))
@@ -61,15 +73,26 @@ if(isset($_GET["FONT"]))
 
 $bbox = imagettfbbox($size, 0, $font, $text);
 
-$im = imagecreatetruecolor(12+$bbox[2]-$bbox[0], $size+2);
+$im = imagecreate(12+$bbox[2]-$bbox[0], $size+2);
 
 // Create some colors
-$bg = imagecolorallocatealpha($im,255,255,255,0);
+$bg = imagecolorallocatealpha($im,255,255,255,127);
 $white = imagecolorallocate($im, 255, 255, 255);
 $black = imagecolorallocate($im, 0, 0, 0);
+
 if ( strlen($color) == 6 && preg_match('/[0-9a-fA-F]{6}/', $color) ) {
                 $black = imagecolorallocate($im, hexdec($color[0] . $color[1]),hexdec($color[2] . $color[3]),hexdec($color[4] . $color[5]));
         }
+if ( strlen($bgcolor) == 6 && preg_match('/[0-9a-fA-F]{6}/', $bgcolor) ) {
+				if(strlen($opacity) > 0 && intval($opacity) >= 0 && intval($opacity) <= 127){
+					$bg = imagecolorallocatealpha($im, hexdec($bgcolor[0] . $bgcolor[1]),hexdec($bgcolor[2] . $bgcolor[3]),hexdec($bgcolor[4] . $bgcolor[5]),$opacity);
+				} else {
+					$bg = imagecolorallocate($im, hexdec($bgcolor[0] . $bgcolor[1]),hexdec($bgcolor[2] . $bgcolor[3]),hexdec($bgcolor[4] . $bgcolor[5]));
+				}
+        }
+		
+imagefill($im, 0, 0, $bg);
+imagesavealpha($im,true);
 imagefilledrectangle($im, 0, 0, 12+$bbox[2]-$bbox[0], $size+2, $bg);
 
 imagettftext($im, $size, 0, 10, $size+1, $black, $font, $text);

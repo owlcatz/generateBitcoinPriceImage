@@ -12,14 +12,14 @@ if(isset($_GET["VALUE"]))
 	$value=$_GET["VALUE"];
 }
 
-$price='last';
+$price='price';
 if(isset($_GET["TYPE"]))
 {
 	$price=strtolower($_GET["TYPE"]);
 }
 
 
-$homepage = file_get_contents('https://api.bitcoinaverage.com/ticker/'.$currency.'/');
+$homepage = file_get_contents('https://www.cryptonator.com/api/ticker/xmr-usd');
 $json = json_decode($homepage,true);
 
 $timestamp="";

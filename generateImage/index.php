@@ -62,7 +62,8 @@ if(isset($_GET["OPACITY"]))
 	$opacity=$_GET["OPACITY"];
 }
 
-$text= (round($value/doubleval($price),$precision))." XMR ";
+//$text= (round($value/doubleval($price),$precision))." XMR ";
+$text = (round($value * $price, $precision))." XMR ";
 //.substr($timestamp,0,strlen($timestamp)-6);
 
 header('Content-Type: image/png');

@@ -22,11 +22,20 @@ if(isset($_GET["TYPE"]))
 $homepage = file_get_contents('https://www.cryptonator.com/api/ticker/xmr-usd');
 $json = json_decode($homepage,true);
 
+function multiArrayAccess($array, $keys) {
+    $result = $array;
+    foreach ($keys as $key)
+        $result = $result[$key];
+    return $result;
+}
+
+$price = multiArrayAccess($json, array('ticker', 'price'));
+
 $timestamp="";
 if(isset($_GET["TIMESTAMP"]))
 {
 	if(strtolower($_GET["TIMESTAMP"])=="yes")
-		$timestamp=$json["timestamp"];
+		$timestamp = multiArrayAccess($json. array('timestamp');
 }
 
 $precision=5;
@@ -53,7 +62,7 @@ if(isset($_GET["OPACITY"]))
 	$opacity=$_GET["OPACITY"];
 }
 
-$text= (round($value/doubleval($json[$price]),$precision))." XMR ".substr($timestamp,0,strlen($timestamp)-6);
+$text= (round($value/doubleval($price),$precision))." XMR ".substr($timestamp,0,strlen($timestamp)-6);
 
 header('Content-Type: image/png');
 

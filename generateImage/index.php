@@ -31,12 +31,12 @@ function multiArrayAccess($array, $keys) {
 
 $price = multiArrayAccess($json, array('ticker', 'price'));
 
-$timestamp="";
-if(isset($_GET["TIMESTAMP"]))
-{
-	if(strtolower($_GET["TIMESTAMP"])=="yes")
-		$timestamp = multiArrayAccess($json. array('timestamp');
-}
+//$timestamp="";
+//if(isset($_GET["TIMESTAMP"]))
+//{
+//	if(strtolower($_GET["TIMESTAMP"])=="yes")
+//		$timestamp = multiArrayAccess($json. array('timestamp');
+//}
 
 $precision=5;
 if(isset($_GET["PRECISION"]))
@@ -62,7 +62,8 @@ if(isset($_GET["OPACITY"]))
 	$opacity=$_GET["OPACITY"];
 }
 
-$text= (round($value/doubleval($price),$precision))." XMR ".substr($timestamp,0,strlen($timestamp)-6);
+$text= (round($value/doubleval($price),$precision))." XMR ";
+//.substr($timestamp,0,strlen($timestamp)-6);
 
 header('Content-Type: image/png');
 

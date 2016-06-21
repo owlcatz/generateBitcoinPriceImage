@@ -53,7 +53,7 @@ if(isset($_GET["OPACITY"]))
 	$opacity=$_GET["OPACITY"];
 }
 
-$text= (round($value/doubleval($json[$price]),$precision))." BTC  ".substr($timestamp,0,strlen($timestamp)-6);
+$text= (round($value/doubleval($json[$price]),$precision))." XMR ".substr($timestamp,0,strlen($timestamp)-6);
 
 header('Content-Type: image/png');
 

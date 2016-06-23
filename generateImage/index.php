@@ -31,13 +31,6 @@ function multiArrayAccess($array, $keys) {
 
 $price = multiArrayAccess($json, array('ticker', 'price'));
 
-//$timestamp="";
-//if(isset($_GET["TIMESTAMP"]))
-//{
-//	if(strtolower($_GET["TIMESTAMP"])=="yes")
-//		$timestamp = multiArrayAccess($json. array('timestamp');
-//}
-
 $precision=5;
 if(isset($_GET["PRECISION"]))
 {
@@ -62,9 +55,7 @@ if(isset($_GET["OPACITY"]))
 	$opacity=$_GET["OPACITY"];
 }
 
-//$text= (round($value/doubleval($price),$precision))." XMR ";
-$text = (round($value * $price, $precision))." XMR ";
-//.substr($timestamp,0,strlen($timestamp)-6);
+$text= (round($value/doubleval($price),$precision))." XMR ";
 
 header('Content-Type: image/png');
 
@@ -101,7 +92,6 @@ if ( strlen($bgcolor) == 6 && preg_match('/[0-9a-fA-F]{6}/', $bgcolor) ) {
 					$bg = imagecolorallocate($im, hexdec($bgcolor[0] . $bgcolor[1]),hexdec($bgcolor[2] . $bgcolor[3]),hexdec($bgcolor[4] . $bgcolor[5]));
 				}
         }
-		
 imagefill($im, 0, 0, $bg);
 imagesavealpha($im,true);
 imagefilledrectangle($im, 0, 0, 12+$bbox[2]-$bbox[0], $size+2, $bg);
@@ -110,6 +100,5 @@ imagettftext($im, $size, 0, 10, $size+1, $black, $font, $text);
 
 imagepng($im);
 imagedestroy($im);
-
 
 ?> 

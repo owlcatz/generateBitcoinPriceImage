@@ -2,7 +2,7 @@
 Php script for XMR/Monero price image generation - Kindly forked from Amacar/generateBitcoinPriceImage and modified for use with Monero/XMR. (Thank you Amacar). :)
 
 Use like this (demo):
-http://owlcatz.net/xmr/index.php/?VALUE=10&CUR=USD&COLOR=ffFFFF&SIZE=12&FONT=calibri
+http://owlcatz.net/xmr/index.php/?VALUE=10&CUR=USD&COLOR=000000&SIZE=12&FONT=calibri
 
 Parameter VALUE is just amount you want to convert to XMR
 

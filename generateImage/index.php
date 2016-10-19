@@ -1,5 +1,12 @@
 <?php
 
+##
+##
+## Going to to attempt to make a BTC to XMR converter :) 
+##
+##
+
+
 $currency='USD';
 if(isset($_GET["CUR"]))
 {
@@ -19,8 +26,8 @@ if(isset($_GET["TYPE"]))
 }
 
 
-$homepage = file_get_contents('https://www.cryptonator.com/api/ticker/xmr-usd');
-$json = json_decode($homepage,true);
+$XMR_pricepage = file_get_contents('https://www.cryptonator.com/api/ticker/xmr-usd');
+$XMR_json = json_decode($XMR_pricepage,true);
 
 function multiArrayAccess($array, $keys) {
     $result = $array;
@@ -29,7 +36,7 @@ function multiArrayAccess($array, $keys) {
     return $result;
 }
 
-$price = multiArrayAccess($json, array('ticker', 'price'));
+$price = multiArrayAccess($XMR_json, array('ticker', 'price'));
 
 $precision=5;
 if(isset($_GET["PRECISION"]))

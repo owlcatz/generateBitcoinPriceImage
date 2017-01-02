@@ -6,6 +6,8 @@
 ##
 ##
 
+// allow case insensitive parameter keys
+$_GET = array_change_key_case($_GET, CASE_UPPER);
 
 $currency='USD';
 if(isset($_GET["CUR"]))
